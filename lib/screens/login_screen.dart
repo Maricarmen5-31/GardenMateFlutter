@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:garden_mate/screens/register_screen.dart';
 import 'package:garden_mate/utils/constants.dart';
 import 'package:garden_mate/widgets/custom_textfield.dart';
+import 'package:page_transition/page_transition.dart';
 
 
 class Login extends StatelessWidget {
@@ -44,11 +46,12 @@ class Login extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  /*Navigator.pushReplacement(
+                  Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          child: const RootPage(),
-                          type: PageTransitionType.bottomToTop));*/
+                          child: const Register(),//RootPage(),
+                          type: PageTransitionType.bottomToTop)
+                  );
                 },
                 child: Container(
                   width: size.width,
@@ -74,11 +77,12 @@ class Login extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  /*Navigator.pushReplacement(
+                  Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          child: const ForgotPassword(),
-                          type: PageTransitionType.bottomToTop));*/
+                          child: const Register(),//ForgotPassword(),
+                          type: PageTransitionType.bottomToTop)
+                  );
                 },
                 child: Center(
                   child: Text.rich(
@@ -144,11 +148,12 @@ class Login extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  //Navigator.pushReplacement(
-                    //  context,
-                      //PageTransition(
-                        //  child: const SignUp(),
-                          //type: PageTransitionType.bottomToTop));
+                  Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                          child: const Register(),
+                          type: PageTransitionType.bottomToTop)
+                  );
                 },
                 child: Center(
                   child: Text.rich(
