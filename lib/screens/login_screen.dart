@@ -12,7 +12,7 @@ class Login extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 40),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,13 +42,13 @@ class Login extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              /*GestureDetector(
+              GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
+                  /*Navigator.pushReplacement(
                       context,
                       PageTransition(
                           child: const RootPage(),
-                          type: PageTransitionType.bottomToTop));
+                          type: PageTransitionType.bottomToTop));*/
                 },
                 child: Container(
                   width: size.width,
@@ -60,7 +60,7 @@ class Login extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   child: const Center(
                     child: Text(
-                      'Sign In',
+                      'Iniciar sesión',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
@@ -68,29 +68,29 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),*/
+              ),
               const SizedBox(
                 height: 10,
               ),
-              /*GestureDetector(
+              GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
+                  /*Navigator.pushReplacement(
                       context,
                       PageTransition(
                           child: const ForgotPassword(),
-                          type: PageTransitionType.bottomToTop));
+                          type: PageTransitionType.bottomToTop));*/
                 },
                 child: Center(
                   child: Text.rich(
                     TextSpan(children: [
                       TextSpan(
-                        text: 'Forgot Password? ',
+                        text: '¿Has olvidado tu contraseña?  ',
                         style: TextStyle(
                           color: Constants.blackColor,
                         ),
                       ),
                       TextSpan(
-                        text: 'Reset Here',
+                        text: 'Restablecer contraseña',
                         style: TextStyle(
                           color: Constants.primaryColor,
                         ),
@@ -99,7 +99,6 @@ class Login extends StatelessWidget {
                   ),
                 ),
               ),
-              */
               const SizedBox(
                 height: 20,
               ),
@@ -108,7 +107,7 @@ class Login extends StatelessWidget {
                   Expanded(child: Divider()),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text('OR'),
+                    child: Text('O'),
                   ),
                   Expanded(child: Divider()),
                 ],
@@ -131,7 +130,7 @@ class Login extends StatelessWidget {
                       child: Image.asset('assets/images/google.png'),
                     ),
                     Text(
-                      'Sign In with Google',
+                      'Iniciar seción con Google',
                       style: TextStyle(
                         color: Constants.blackColor,
                         fontSize: 18.0,
@@ -143,25 +142,25 @@ class Login extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              /*GestureDetector(
+              GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      PageTransition(
-                          child: const SignUp(),
-                          type: PageTransitionType.bottomToTop));
+                  //Navigator.pushReplacement(
+                    //  context,
+                      //PageTransition(
+                        //  child: const SignUp(),
+                          //type: PageTransitionType.bottomToTop));
                 },
                 child: Center(
                   child: Text.rich(
                     TextSpan(children: [
                       TextSpan(
-                        text: 'New to Planty? ',
+                        text: 'Nuevo en Garden Mate? ',
                         style: TextStyle(
                           color: Constants.blackColor,
                         ),
                       ),
                       TextSpan(
-                        text: 'Register',
+                        text: 'Registrarse',
                         style: TextStyle(
                           color: Constants.primaryColor,
                         ),
@@ -170,7 +169,6 @@ class Login extends StatelessWidget {
                   ),
                 ),
               ),
-            */
             ],
           ),
         ),
