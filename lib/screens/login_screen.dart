@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garden_mate/screens/forgotPassword_screen.dart';
 import 'package:garden_mate/screens/register_screen.dart';
 import 'package:garden_mate/utils/constants.dart';
 import 'package:garden_mate/widgets/custom_textfield.dart';
@@ -80,7 +81,7 @@ class Login extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          child: const Register(),//ForgotPassword(),
+                          child: const ForgotPassword(),
                           type: PageTransitionType.bottomToTop)
                   );
                 },
@@ -134,7 +135,7 @@ class Login extends StatelessWidget {
                       child: Image.asset('assets/images/google.png'),
                     ),
                     Text(
-                      'Iniciar seción con Google',
+                      'Iniciar sesión con Google',
                       style: TextStyle(
                         color: Constants.blackColor,
                         fontSize: 18.0,
