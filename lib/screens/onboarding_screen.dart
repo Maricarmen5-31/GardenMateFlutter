@@ -29,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Login()));
               }, //login
               child: const Text(
-                'Skip',
+                'Saltar',
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 16.0,
@@ -51,17 +51,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             },
             controller: _pageController,
             children: [
-              createPage(
+              CreatePage(
                 image: 'assets/images/plant-one.png',
                 title: Constants.titleOne,
                 description: Constants.descriptionOne,
               ),
-              createPage(
+              CreatePage(
                 image: 'assets/images/plant-two.png',
                 title: Constants.titleTwo,
                 description: Constants.descriptionTwo,
               ),
-              createPage(
+              CreatePage(
                 image: 'assets/images/plant-three.png',
                 title: Constants.titleThree,
                 description: Constants.descriptionThree,
@@ -146,12 +146,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
 
 
-class createPage extends StatelessWidget {
+class CreatePage extends StatelessWidget {
   final String image;
   final String title;
   final String description;
 
-  const createPage({
+  const CreatePage({
     Key? key,
     required this.image,
     required this.title,

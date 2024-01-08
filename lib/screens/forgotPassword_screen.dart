@@ -21,20 +21,26 @@ class ForgotPassword extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset('assets/images/reset-password.png'),
+              const SizedBox(
+                height: 20,
+              ),
               const Text(
-                'Forgot\nPassword',
+                'Restablecer\nContraseña',
                 style: TextStyle(
                   fontSize: 35.0,
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 50,
               ),
               const CustomTextfield(
                 obscureText: false,
-                hintText: 'Enter Email',
+                hintText: 'Correo',
                 icon: Icons.alternate_email,
+              ),
+              const SizedBox(
+                height: 20,
               ),
               GestureDetector(
                 onTap: () {},
@@ -48,7 +54,7 @@ class ForgotPassword extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                   child: const Center(
                     child: Text(
-                      'Reset Password',
+                      'Restablecer contraseña',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
@@ -58,7 +64,7 @@ class ForgotPassword extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {
@@ -72,13 +78,13 @@ class ForgotPassword extends StatelessWidget {
                   child: Text.rich(
                     TextSpan(children: [
                       TextSpan(
-                        text: 'Have an Account? ',
+                        text: '¿Tienes una cuenta? ',
                         style: TextStyle(
                           color: Constants.blackColor,
                         ),
                       ),
                       TextSpan(
-                        text: 'Login',
+                        text: 'Iniciar sesión',
                         style: TextStyle(
                           color: Constants.primaryColor,
                         ),

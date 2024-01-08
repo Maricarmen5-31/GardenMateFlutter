@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garden_mate/screens/forgotPassword_screen.dart';
+import 'package:garden_mate/screens/navigation_screen.dart';
 import 'package:garden_mate/screens/register_screen.dart';
 import 'package:garden_mate/utils/constants.dart';
 import 'package:garden_mate/widgets/custom_textfield.dart';
@@ -50,7 +51,7 @@ class Login extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       PageTransition(
-                          child: const Register(),//RootPage(),
+                          child: const Navigation(),
                           type: PageTransitionType.bottomToTop)
                   );
                 },
