@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:garden_mate/models/controlPlant.dart';
 import 'package:garden_mate/screens/record_screen.dart';
 import 'package:garden_mate/utils/constants.dart';
-import 'package:garden_mate/widgets/datoIoT_widget.dart';
 import 'package:page_transition/page_transition.dart';
 
 class RecordWidget extends StatelessWidget {
@@ -25,7 +24,7 @@ class RecordWidget extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Constants.primaryColor.withOpacity(.1),
+          color: Constants.primaryColor.withOpacity(.15),
           borderRadius: BorderRadius.circular(10),
         ),
         height: 80.0,
@@ -107,3 +106,30 @@ class RecordWidget extends StatelessWidget {
   }
 }
 
+class DatoIoTWidget extends StatelessWidget {
+  final double height;
+  final String image;
+  final String text;
+  const DatoIoTWidget({super.key, required this.height, required this.image, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: [
+        SizedBox(
+          height: height,
+          child:
+          Image.asset(image),
+        ),
+        Text(text,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15.0,
+            color: Constants.primaryColor,
+          ),
+        ),
+      ],
+    );
+  }
+}

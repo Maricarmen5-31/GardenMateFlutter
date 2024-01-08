@@ -75,7 +75,7 @@ class _NavigationState extends State<Navigation> {
           Navigator.push(context, PageTransition(child: const AddScreen(), type: PageTransitionType.bottomToTop));
         },
         backgroundColor: Constants.primaryColor,
-        child: Image.asset('assets/images/code-scan-two.png', height: 30.0,),
+        child: Icon(Icons.add, color: Constants.whiteColor, size: 40.0,),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(

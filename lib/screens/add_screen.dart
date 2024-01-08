@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garden_mate/utils/constants.dart';
+import 'package:garden_mate/widgets/custom_textfield.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});
@@ -17,51 +18,32 @@ class _AddScreenState extends State<AddScreen> {
       body: Stack(
         children: [
           Positioned(
-              top: 50,
-              left: 20,
-              right: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Constants.primaryColor.withOpacity(.15),
-                      ),
-                      child: Icon(
-                        Icons.close,
-                        color: Constants.primaryColor,
-                      ),
+            top: 50,
+            left: 20,
+            right: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Constants.primaryColor.withOpacity(.15),
+                    ),
+                    child: Icon(
+                      Icons.close,
+                      color: Constants.primaryColor,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      debugPrint('favorite');
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Constants.primaryColor.withOpacity(.15),
-                      ),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.share,
-                          color: Constants.primaryColor,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+                ),                
+              ],
+            )
+          ),
           Positioned(
             top: 100,
             right: 20,
@@ -70,28 +52,121 @@ class _AddScreenState extends State<AddScreen> {
               width: size.width * .8,
               height: size.height * .8,
               padding: const EdgeInsets.all(20),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/code-scan.png',
-                      height: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        width: 200.0,
+                        height: 200.0,
+                        decoration: BoxDecoration(
+                          color: Constants.primaryColor.withOpacity(.4),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Positioned(
+                        top: 20,
+                        left: 0,
+                        right: 0,
+                        child: SizedBox(
+                          height: 160.0,
+                          child:
+                          Image.asset('assets/images/plant-six.png'),
+                        ),
+                      ),                      
+                    ],
+                  ),                  
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Agregar planta',
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w700,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'Tap to Scan',
-                      style: TextStyle(
-                        color: Constants.primaryColor.withOpacity(.80),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Nombre de la planta',
+                    icon: Icons.park,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Especie',
+                    icon: Icons.type_specimen,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Tamaño',
+                    icon: Icons.medical_services,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Categoría',
+                    icon: Icons.category,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Humedad',
+                    icon: Icons.water,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Temperatura',
+                    icon: Icons.telegram,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Iluminación',
+                    icon: Icons.sunny,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Hora',
+                    icon: Icons.date_range,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Fecha',
+                    icon: Icons.date_range,
+                  ),
+                  const CustomTextfield(
+                    obscureText: false,
+                    hintText: 'Descripción',
+                    icon: Icons.text_fields,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        color: Constants.primaryColor,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      child: const Center(
+                        child: Text(
+                          'Agregar planta',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                          ),
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  ),                            
+                ],
               ),
             ),
           ),
