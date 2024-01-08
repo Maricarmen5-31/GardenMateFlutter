@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # garden_mate
 
 A new Flutter project.
@@ -14,3 +15,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# GardenMateFlutter
+Garden Mate es un aplicativo movil para el cuidado de plantas mediante el control por dispositivos IoT
+>>>>>>> 2ab837ed88a793234dce67e3d99f58596f084096
