@@ -3,7 +3,7 @@ import 'package:garden_mate/utils/constants.dart';
 import 'package:garden_mate/widgets/custom_textfield.dart';
 
 class AddScreen extends StatefulWidget {
-  const AddScreen({super.key});
+  const AddScreen({Key? key}) : super(key: key);
 
   @override
   State<AddScreen> createState() => _AddScreenState();
@@ -40,9 +40,9 @@ class _AddScreenState extends State<AddScreen> {
                       color: Constants.primaryColor,
                     ),
                   ),
-                ),                
+                ),
               ],
-            )
+            ),
           ),
           Positioned(
             top: 100,
@@ -73,12 +73,11 @@ class _AddScreenState extends State<AddScreen> {
                         right: 0,
                         child: SizedBox(
                           height: 160.0,
-                          child:
-                          Image.asset('assets/images/plant-six.png'),
+                          child: Image.asset('assets/images/plant-six.png'),
                         ),
-                      ),                      
+                      ),
                     ],
-                  ),                  
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -92,80 +91,50 @@ class _AddScreenState extends State<AddScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Nombre de la planta',
-                    icon: Icons.park,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Especie',
-                    icon: Icons.type_specimen,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Tamaño',
-                    icon: Icons.medical_services,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Categoría',
-                    icon: Icons.category,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Humedad',
-                    icon: Icons.water,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Temperatura',
-                    icon: Icons.telegram,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Iluminación',
-                    icon: Icons.sunny,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Hora',
-                    icon: Icons.date_range,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Fecha',
-                    icon: Icons.date_range,
-                  ),
-                  const CustomTextfield(
-                    obscureText: false,
-                    hintText: 'Descripción',
-                    icon: Icons.text_fields,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        color: Constants.primaryColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                      child: const Center(
-                        child: Text(
-                          'Agregar planta',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18.0,
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                        
+                          const CustomTextfield(
+                            obscureText: false,
+                            hintText: 'Humedad',
+                            icon: Icons.water,
                           ),
-                        ),
+                          const CustomTextfield(
+                            obscureText: false,
+                            hintText: 'Temperatura',
+                            icon: Icons.telegram,
+                          ),
+                          
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              width: size.width,
+                              decoration: BoxDecoration(
+                                color: Constants.primaryColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 20),
+                              child: const Center(
+                                child: Text(
+                                  'Agregar planta',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),                            
+                  ),
                 ],
               ),
             ),

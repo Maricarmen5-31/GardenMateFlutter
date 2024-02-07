@@ -172,7 +172,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                           Text(
                             r'$' + plantList[widget.plantId].price.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Constants.blackColor,
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
@@ -296,7 +296,7 @@ class PlantFeature extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Constants.blackColor,
           ),
         ),

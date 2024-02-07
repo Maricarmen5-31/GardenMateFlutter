@@ -160,7 +160,7 @@ class _RecordScreenState extends State<RecordScreen> {
                           ),
                           Text(
                             plantList[widget.plantId].category,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Constants.blackColor,
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
@@ -210,7 +210,7 @@ class PlantFeature extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Constants.blackColor,
           ),
         ),
@@ -250,7 +250,7 @@ class PlantFeatureIoT extends StatelessWidget {
         ),
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Constants.blackColor,
           ),
         ),

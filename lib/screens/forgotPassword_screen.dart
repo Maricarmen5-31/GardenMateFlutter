@@ -77,7 +77,7 @@ class ForgotPassword extends StatelessWidget {
                 child: Center(
                   child: Text.rich(
                     TextSpan(children: [
-                      TextSpan(
+                      const TextSpan(
                         text: '¿Tienes una cuenta? ',
                         style: TextStyle(
                           color: Constants.blackColor,

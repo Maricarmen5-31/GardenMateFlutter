@@ -7,8 +7,8 @@ class Constants {
   static var blueColor = const Color.fromARGB(255, 11, 102, 163);
   static var yellowColor = const Color.fromARGB(255, 165, 127, 13);
   static var purpleColor = const Color.fromARGB(255, 135, 43, 163);
-  static var blackColor = Colors.black54;
   static var whiteColor = Colors.white;
+  static const Color blackColor = Colors.black; // Definir blackColor como una constante
 
   //Onboarding texts
   static var titleOne = "Garden Mate";

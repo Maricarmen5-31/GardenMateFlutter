@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gardenmateflutter-dev-123416-authRole",
+      "UnauthRoleArn": "arn:aws:iam::533267410380:role/amplify-gardenmateflutter-dev-123416-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::533267410380:role/amplify-gardenmateflutter-dev-123416-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-gardenmateflutter-dev-123416-deployment",
+      "UnauthRoleName": "amplify-gardenmateflutter-dev-123416-unauthRole",
+      "StackName": "amplify-gardenmateflutter-dev-123416",
+      "StackId": "arn:aws:cloudformation:us-east-1:533267410380:stack/amplify-gardenmateflutter-dev-123416/f52c72a0-c515-11ee-a976-12c80bfc1175",
+      "AmplifyAppId": "d28aejxwcgp0l3"
+    },
+    "categories": {
+      "auth": {
+        "gardenmateflutter88652c31": {}
+      },
+      "api": {
+        "gardenmateflutter": {}
+      },
+      "analytics": {
+        "gardenmateflutter": {}
+      }
+    }
+  }
+}

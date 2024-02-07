@@ -1,0 +1,21 @@
+{
+    "appName": "gardenmateflutter",
+    "roleName": "pinpointLambdaRolef310301f",
+    "cloudformationPolicyName": "cloudformationPolicyf310301f",
+    "cloudWatchPolicyName": "cloudWatchPolicyf310301f",
+    "pinpointPolicyName": "pinpointPolicyf310301f",
+    "authPolicyName": "pinpoint_amplify_f310301f",
+    "unauthPolicyName": "pinpoint_amplify_f310301f",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

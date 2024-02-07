@@ -55,12 +55,12 @@ class _NavigationState extends State<Navigation> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(titleList[_bottomNavIndex], style: TextStyle(
+            Text(titleList[_bottomNavIndex], style: const TextStyle(
               color: Constants.blackColor,
               fontWeight: FontWeight.w500,
               fontSize: 24,
             ),),
-            Icon(Icons.notifications, color: Constants.blackColor, size: 30.0,)
+            const Icon(Icons.notifications, color: Constants.blackColor, size: 30.0,)
           ],
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

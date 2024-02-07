@@ -1,10 +1,14 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:garden_mate/constants.dart';
+import 'package:garden_mate/providers/user_provider.dart';
 import 'package:garden_mate/screens/login_screen.dart';
+import 'package:garden_mate/screens/navigation_screen.dart';
 import 'package:garden_mate/utils/constants.dart';
-
+import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -26,8 +30,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             padding: const EdgeInsets.only(right: 20, top: 20),
             child: InkWell(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const Login()));
-              }, //login
+                // Agregar lógica para saltar la autenticación
+                Future<AuthUser?> loggedInUser =
+                    context.read<UserProvider>().checkedLogedInUser();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FutureBuilder<AuthUser?>(
+                        future: loggedInUser,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            if (snapshot.data != null) {
+                              Future.delayed(
+                                const Duration(seconds: 1),
+                                () {},
+                              );
+                            } else {
+                              // Si el usuario no está autenticado, simplemente vuelve a la pantalla de inicio de sesión
+                              return const Login();
+                            }
+                          }
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                );
+              },
               child: const Text(
                 'Saltar',
                 style: TextStyle(
@@ -38,7 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
           )
-        ], 
+        ],
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -85,25 +118,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 color: Constants.primaryColor,
               ),
               child: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      if (currentIndex < 2) {
-                        currentIndex++;
-                        if (currentIndex < 3) {
-                          _pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeIn);
-                        }
-                      } else {
-                        Navigator.pushReplacement(context,MaterialPageRoute(builder: (_) => const Login()));
+                onPressed: () {
+                  setState(() {
+                    if (currentIndex < 2) {
+                      currentIndex++;
+                      if (currentIndex < 3) {
+                        _pageController.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                       }
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.arrow_forward_ios,
-                    size: 24,
-                    color: Colors.white,
-                  )),
+                    } else {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => const Login()));
+                    }
+                  });
+                },
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 24,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
         ],
@@ -141,10 +176,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     return indicators;
   }
-  
 }
-
-
 
 class CreatePage extends StatelessWidget {
   final String image;
@@ -198,6 +230,49 @@ class CreatePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class SkipButton extends StatelessWidget {
+  const SkipButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      child: TextButton(
+          onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Login(),
+                ),
+              ),
+          child: Row(
+            children: [
+              Text(
+                "Skip",
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .color!
+                          .withOpacity(0.8),
+                    ),
+              ),
+              const SizedBox(width: defaultPadding / 4),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .color!
+                    .withOpacity(0.8),
+              )
+            ],
+          )),
     );
   }
 }

@@ -1,6 +1,11 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:flutter/material.dart';
+import 'package:garden_mate/providers/user_provider.dart';
+import 'package:garden_mate/screens/onboarding_screen.dart';
+import 'package:garden_mate/shared/extensions.dart';
 import 'package:garden_mate/utils/constants.dart';
 import 'package:garden_mate/widgets/profile_widget.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -43,16 +48,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: size.width * .3,
                 child: Row(
                   children: [
-                    Text(
+                    const Text(
                       'Leticia Perez',
                       style: TextStyle(
                         color: Constants.blackColor,
-                        fontSize: 20,
+                        fontSize: 15,
                       ),
                     ),
                     SizedBox(
-                        height: 24,
-                        child: Image.asset("assets/images/verified.png")),
+                      height: 24,
+                      child: Image.asset("assets/images/verified.png"),
+                    ),
                   ],
                 ),
               ),
@@ -68,32 +74,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: size.height * .7,
                 width: size.width,
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ProfileWidget(
+                    const ProfileWidget(
                       icon: Icons.person,
                       title: 'Mi perfil',
                     ),
-                    ProfileWidget(
+                    const ProfileWidget(
                       icon: Icons.settings,
                       title: 'Configuraciones',
                     ),
-                    ProfileWidget(
+                    const ProfileWidget(
                       icon: Icons.notifications,
                       title: 'Notificaciones',
                     ),
-                    ProfileWidget(
+                    const ProfileWidget(
                       icon: Icons.chat,
                       title: 'FAQs',
                     ),
-                    ProfileWidget(
+                    const ProfileWidget(
                       icon: Icons.share,
                       title: 'Compartir',
                     ),
+                    // Utiliza el ProfileWidget personalizado para el botón de "Cerrar sesión"
                     ProfileWidget(
-                      icon: Icons.logout,
+                      icon: Icons.border_all_rounded,
                       title: 'Cerrar sesión',
+                      isLoading: context.watch<UserProvider>().isLoading,
+                      onTap: () async {
+                        final response =
+                            await context.read<UserProvider>().signOut();
+                        response.fold(
+                          (error) => context.showError(error),
+                          (result) {
+                            if (result is CognitoCompleteSignOut) {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const OnboardingScreen(),
+                                ),
+                                (route) => false,
+                              );
+                            }
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -101,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

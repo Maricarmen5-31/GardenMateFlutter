@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "gardenmateflutter",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authgardenmateflutter88652c31",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2024-02-07T05:31:09.826Z"
+}

@@ -66,7 +66,7 @@ class RecordWidget extends StatelessWidget {
                       Text(plantList[index].category),
                       Text(
                         plantList[index].plantName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: Constants.blackColor,
