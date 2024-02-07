@@ -45,7 +45,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             if (snapshot.data != null) {
                               Future.delayed(
                                 const Duration(seconds: 1),
-                                () {},
+                                () {
+                                  WidgetsBinding.instance!.addPostFrameCallback(
+                                    (_) {
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Navigation(),
+                                        ),
+                                        (route) => false,
+                                      );
+                                    },
+                                  );
+                                },
                               );
                             } else {
                               // Si el usuario no está autenticado, simplemente vuelve a la pantalla de inicio de sesión
