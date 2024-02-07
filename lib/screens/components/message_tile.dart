@@ -1,0 +1,42 @@
+import 'package:garden_mate/models/Sensor.dart';
+import 'package:flutter/material.dart';
+
+import '../../../constants.dart';
+import 'text_message.dart';
+
+class MessageTile extends StatelessWidget {
+  const MessageTile({
+    Key? key,
+    required this.message,
+    this.isSender = false,
+  }) : super(key: key);
+
+  final Sensor message;
+  final bool isSender;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: defaultPadding),
+      child: Row(
+        mainAxisAlignment:
+            isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          if (!isSender) ...[
+            CircleAvatar(
+              radius: 12,
+              backgroundColor: kPrimaryColor,
+              child: Text(
+                message.humidity.toString().toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            const SizedBox(width: defaultPadding / 2),
+          ],
+          TextMessage(
+              message: message.temperature.toString(), isSender: isSender),
+        ],
+      ),
+    );
+  }
+}

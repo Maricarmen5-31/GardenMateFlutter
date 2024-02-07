@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:garden_mate/providers/sensor_provider.dart';
 import 'package:garden_mate/providers/user_provider.dart';
 import 'package:garden_mate/screens/onboarding_screen.dart';
 
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-
 
 import 'amplifyconfiguration.dart';
 import 'models/ModelProvider.dart';
@@ -19,6 +19,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(create: (context) => SensorProvider()),
       ],
       child: const MyApp(),
     ),
