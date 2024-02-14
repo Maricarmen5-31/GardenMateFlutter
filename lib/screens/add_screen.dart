@@ -2,6 +2,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:garden_mate/models/Sensor.dart';
 import 'package:garden_mate/providers/sensor_provider.dart';
+import 'package:garden_mate/repositories/sensor_repository.dart';
 import 'package:garden_mate/shared/extensions.dart';
 import 'package:garden_mate/utils/constants.dart';
 import 'package:garden_mate/widgets/custom_textfield.dart';
@@ -22,7 +23,7 @@ class _AddScreenState extends State<AddScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
+    bool _isLoading = false;
     return Scaffold(
       body: Stack(
         children: [
@@ -91,7 +92,7 @@ class _AddScreenState extends State<AddScreen> {
                     height: 20,
                   ),
                   const Text(
-                    'Agregar planta',
+                    'Agregar sensor',
                     style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
@@ -134,54 +135,61 @@ class _AddScreenState extends State<AddScreen> {
                               height: 10,
                             ),
                             GestureDetector(
-                              onTap: () async {
-                                if (_formKey.currentState != null &&
-                                    _formKey.currentState!.validate()) {
-                                  String humidity = _humidityController.text;
-                                  String temperature =
-                                      _temperatureController.text;
-                                  // Obtener los valores de los campos
-                                  double parsedHumidity =
-                                      double.parse(humidity);
-                                  double parsedTemperature =
-                                      double.parse(temperature);
+                              onTap: _isLoading
+                                  ? null
+                                  : () async {
+                                      setState(() {
+                                        _isLoading = true; // Comienza la carga
+                                      });
 
-                                  // Crear el mensaje
-                                  final message = Sensor(
-                                    temperature: parsedTemperature,
-                                    humidity: parsedHumidity,
-                                  );
+                                      if (_formKey.currentState != null &&
+                                          _formKey.currentState!.validate()) {
+                                        String humidity =
+                                            _humidityController.text;
+                                        String temperature =
+                                            _temperatureController.text;
 
-                                  // Enviar el mensaje utilizando el provider
-                                  final response = await context
-                                      .read<SensorProvider>()
-                                      .sendSensor(message);
+                                        // Obtener los valores de los campos
+                                        double parsedHumidity =
+                                            double.parse(humidity);
+                                        double parsedTemperature =
+                                            double.parse(temperature);
 
-                                  // Manejar la respuesta
-                                  response.fold(
-                                    (error) {
-                                      context.showError(
-                                          error); // Esto mostrará el error en caso de fallo
-                                      safePrint(
-                                          'Error al agregar sensor: $error'); // Esto imprimirá el error en la consola también
-                                    },
-                                    (resMessage) {
-                                      if (resMessage != null) {
+                                        // Crear el sensor
+                                        final sensor = Sensor(
+                                          temperature: parsedTemperature,
+                                          humidity: parsedHumidity,
+                                        );
+
+                                        // Instanciar SensorRepository
+                                        SensorRepository sensorRepository =
+                                            SensorRepository();
+
+                                        // Agregar el sensor utilizando sendSensor
+                                        await sensorRepository
+                                            .sendSensor(sensor);
+
+                                        // Limpiar los campos
                                         _humidityController.clear();
                                         _temperatureController.clear();
+
+                                        // Mostrar un mensaje de éxito
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                                'Envio de sensor correcto'),
+                                                'Sensor agregado correctamente'),
                                           ),
                                         );
+
+                                        // Regresar a la pantalla anterior
                                         Navigator.pop(context);
                                       }
+
+                                      setState(() {
+                                        _isLoading = false; // Termina la carga
+                                      });
                                     },
-                                  );
-                                }
-                              },
                               child: Container(
                                 width: size.width,
                                 decoration: BoxDecoration(
@@ -190,14 +198,20 @@ class _AddScreenState extends State<AddScreen> {
                                 ),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 20),
-                                child: const Center(
-                                  child: Text(
-                                    'Agregar datos de sensor',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18.0,
-                                    ),
-                                  ),
+                                child: Center(
+                                  child: _isLoading
+                                      ? CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                  Colors.white),
+                                        )
+                                      : const Text(
+                                          'Agregar datos de sensor',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18.0,
+                                          ),
+                                        ),
                                 ),
                               ),
                             ),

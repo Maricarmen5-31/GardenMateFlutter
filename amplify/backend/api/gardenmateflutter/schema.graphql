@@ -1,12 +1,19 @@
-type BudgetEntry @model @auth(rules: [{allow: owner}]) {
+type BudgetEntry @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   title: String!
   description: String
   amount: Float!
 }
 
-type Sensor @model @auth(rules: [{allow: public}]) {
+type Sensor @model @auth(rules: [{ allow: public }, { allow: private }]) {
   id: ID!
   humidity: Float
   temperature: Float
-} 
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Message @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  message: String!
+}

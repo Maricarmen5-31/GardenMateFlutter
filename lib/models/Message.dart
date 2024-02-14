@@ -23,12 +23,11 @@ import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart' as amplify_core;
 
 
-/** This is an auto generated class representing the Sensor type in your schema. */
-class Sensor extends amplify_core.Model {
-  static const classType = const _SensorModelType();
+/** This is an auto generated class representing the Message type in your schema. */
+class Message extends amplify_core.Model {
+  static const classType = const _MessageModelType();
   final String id;
-  final double? _humidity;
-  final double? _temperature;
+  final String? _message;
   final amplify_core.TemporalDateTime? _createdAt;
   final amplify_core.TemporalDateTime? _updatedAt;
 
@@ -39,18 +38,23 @@ class Sensor extends amplify_core.Model {
   @override
   String getId() => id;
   
-  SensorModelIdentifier get modelIdentifier {
-      return SensorModelIdentifier(
+  MessageModelIdentifier get modelIdentifier {
+      return MessageModelIdentifier(
         id: id
       );
   }
   
-  double? get humidity {
-    return _humidity;
-  }
-  
-  double? get temperature {
-    return _temperature;
+  String get message {
+    try {
+      return _message!;
+    } catch(e) {
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+          recoverySuggestion:
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+          underlyingException: e.toString()
+          );
+    }
   }
   
   amplify_core.TemporalDateTime? get createdAt {
@@ -61,15 +65,12 @@ class Sensor extends amplify_core.Model {
     return _updatedAt;
   }
   
-  const Sensor._internal({required this.id, humidity, temperature, createdAt, updatedAt}): _humidity = humidity, _temperature = temperature, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Message._internal({required this.id, required message, createdAt, updatedAt}): _message = message, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Sensor({String? id, double? humidity, double? temperature, amplify_core.TemporalDateTime? createdAt, amplify_core.TemporalDateTime? updatedAt}) {
-    return Sensor._internal(
+  factory Message({String? id, required String message}) {
+    return Message._internal(
       id: id == null ? amplify_core.UUID.getUUID() : id,
-      humidity: humidity,
-      temperature: temperature,
-      createdAt: createdAt,
-      updatedAt: updatedAt);
+      message: message);
   }
   
   bool equals(Object other) {
@@ -79,12 +80,9 @@ class Sensor extends amplify_core.Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Sensor &&
+    return other is Message &&
       id == other.id &&
-      _humidity == other._humidity &&
-      _temperature == other._temperature &&
-      _createdAt == other._createdAt &&
-      _updatedAt == other._updatedAt;
+      _message == other._message;
   }
   
   @override
@@ -94,10 +92,9 @@ class Sensor extends amplify_core.Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("Sensor {");
+    buffer.write("Message {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("humidity=" + (_humidity != null ? _humidity!.toString() : "null") + ", ");
-    buffer.write("temperature=" + (_temperature != null ? _temperature!.toString() : "null") + ", ");
+    buffer.write("message=" + "$_message" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -105,70 +102,48 @@ class Sensor extends amplify_core.Model {
     return buffer.toString();
   }
   
-  Sensor copyWith({double? humidity, double? temperature, amplify_core.TemporalDateTime? createdAt, amplify_core.TemporalDateTime? updatedAt}) {
-    return Sensor._internal(
+  Message copyWith({String? message}) {
+    return Message._internal(
       id: id,
-      humidity: humidity ?? this.humidity,
-      temperature: temperature ?? this.temperature,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt);
+      message: message ?? this.message);
   }
   
-  Sensor copyWithModelFieldValues({
-    ModelFieldValue<double?>? humidity,
-    ModelFieldValue<double?>? temperature,
-    ModelFieldValue<amplify_core.TemporalDateTime?>? createdAt,
-    ModelFieldValue<amplify_core.TemporalDateTime?>? updatedAt
+  Message copyWithModelFieldValues({
+    ModelFieldValue<String>? message
   }) {
-    return Sensor._internal(
+    return Message._internal(
       id: id,
-      humidity: humidity == null ? this.humidity : humidity.value,
-      temperature: temperature == null ? this.temperature : temperature.value,
-      createdAt: createdAt == null ? this.createdAt : createdAt.value,
-      updatedAt: updatedAt == null ? this.updatedAt : updatedAt.value
+      message: message == null ? this.message : message.value
     );
   }
   
-  Sensor.fromJson(Map<String, dynamic> json)  
+  Message.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _humidity = (json['humidity'] as num?)?.toDouble(),
-      _temperature = (json['temperature'] as num?)?.toDouble(),
+      _message = json['message'],
       _createdAt = json['createdAt'] != null ? amplify_core.TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? amplify_core.TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'humidity': _humidity, 'temperature': _temperature, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'message': _message, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
     'id': id,
-    'humidity': _humidity,
-    'temperature': _temperature,
+    'message': _message,
     'createdAt': _createdAt,
     'updatedAt': _updatedAt
   };
 
-  static final amplify_core.QueryModelIdentifier<SensorModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<SensorModelIdentifier>();
+  static final amplify_core.QueryModelIdentifier<MessageModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<MessageModelIdentifier>();
   static final ID = amplify_core.QueryField(fieldName: "id");
-  static final HUMIDITY = amplify_core.QueryField(fieldName: "humidity");
-  static final TEMPERATURE = amplify_core.QueryField(fieldName: "temperature");
-  static final CREATEDAT = amplify_core.QueryField(fieldName: "createdAt");
-  static final UPDATEDAT = amplify_core.QueryField(fieldName: "updatedAt");
+  static final MESSAGE = amplify_core.QueryField(fieldName: "message");
   static var schema = amplify_core.Model.defineSchema(define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "Sensor";
-    modelSchemaDefinition.pluralName = "Sensors";
+    modelSchemaDefinition.name = "Message";
+    modelSchemaDefinition.pluralName = "Messages";
     
     modelSchemaDefinition.authRules = [
       amplify_core.AuthRule(
         authStrategy: amplify_core.AuthStrategy.PUBLIC,
-        operations: const [
-          amplify_core.ModelOperation.CREATE,
-          amplify_core.ModelOperation.UPDATE,
-          amplify_core.ModelOperation.DELETE,
-          amplify_core.ModelOperation.READ
-        ]),
-      amplify_core.AuthRule(
-        authStrategy: amplify_core.AuthStrategy.PRIVATE,
         operations: const [
           amplify_core.ModelOperation.CREATE,
           amplify_core.ModelOperation.UPDATE,
@@ -180,54 +155,50 @@ class Sensor extends amplify_core.Model {
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: Sensor.HUMIDITY,
-      isRequired: false,
-      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.double)
+      key: Message.MESSAGE,
+      isRequired: true,
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: Sensor.TEMPERATURE,
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.nonQueryField(
+      fieldName: 'createdAt',
       isRequired: false,
-      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.double)
-    ));
-    
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: Sensor.CREATEDAT,
-      isRequired: false,
+      isReadOnly: true,
       ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.dateTime)
     ));
     
-    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
-      key: Sensor.UPDATEDAT,
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.nonQueryField(
+      fieldName: 'updatedAt',
       isRequired: false,
+      isReadOnly: true,
       ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.dateTime)
     ));
   });
 }
 
-class _SensorModelType extends amplify_core.ModelType<Sensor> {
-  const _SensorModelType();
+class _MessageModelType extends amplify_core.ModelType<Message> {
+  const _MessageModelType();
   
   @override
-  Sensor fromJson(Map<String, dynamic> jsonData) {
-    return Sensor.fromJson(jsonData);
+  Message fromJson(Map<String, dynamic> jsonData) {
+    return Message.fromJson(jsonData);
   }
   
   @override
   String modelName() {
-    return 'Sensor';
+    return 'Message';
   }
 }
 
 /**
  * This is an auto generated class representing the model identifier
- * of [Sensor] in your schema.
+ * of [Message] in your schema.
  */
-class SensorModelIdentifier implements amplify_core.ModelIdentifier<Sensor> {
+class MessageModelIdentifier implements amplify_core.ModelIdentifier<Message> {
   final String id;
 
-  /** Create an instance of SensorModelIdentifier using [id] the primary key. */
-  const SensorModelIdentifier({
+  /** Create an instance of MessageModelIdentifier using [id] the primary key. */
+  const MessageModelIdentifier({
     required this.id});
   
   @override
@@ -245,7 +216,7 @@ class SensorModelIdentifier implements amplify_core.ModelIdentifier<Sensor> {
   String serializeAsString() => serializeAsMap().values.join('#');
   
   @override
-  String toString() => 'SensorModelIdentifier(id: $id)';
+  String toString() => 'MessageModelIdentifier(id: $id)';
   
   @override
   bool operator ==(Object other) {
@@ -253,7 +224,7 @@ class SensorModelIdentifier implements amplify_core.ModelIdentifier<Sensor> {
       return true;
     }
     
-    return other is SensorModelIdentifier &&
+    return other is MessageModelIdentifier &&
       id == other.id;
   }
   

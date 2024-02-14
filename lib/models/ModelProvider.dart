@@ -21,16 +21,18 @@
 
 import 'package:amplify_core/amplify_core.dart' as amplify_core;
 import 'BudgetEntry.dart';
+import 'Message.dart';
 import 'Sensor.dart';
 
 export 'BudgetEntry.dart';
+export 'Message.dart';
 export 'Sensor.dart';
 
 class ModelProvider implements amplify_core.ModelProviderInterface {
   @override
-  String version = "f62ffafebc91a332314b621bd2c3dfd8";
+  String version = "b18aabae06f5159efb4b8d96434c085f";
   @override
-  List<amplify_core.ModelSchema> modelSchemas = [BudgetEntry.schema, Sensor.schema];
+  List<amplify_core.ModelSchema> modelSchemas = [BudgetEntry.schema, Message.schema, Sensor.schema];
   @override
   List<amplify_core.ModelSchema> customTypeSchemas = [];
   static final ModelProvider _instance = ModelProvider();
@@ -41,6 +43,8 @@ class ModelProvider implements amplify_core.ModelProviderInterface {
     switch(modelName) {
       case "BudgetEntry":
         return BudgetEntry.classType;
+      case "Message":
+        return Message.classType;
       case "Sensor":
         return Sensor.classType;
       default:

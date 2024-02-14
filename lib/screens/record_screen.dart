@@ -53,25 +53,25 @@ class _RecordScreenState extends State<RecordScreen> {
                       color: Constants.primaryColor,
                     ),
                   ),
-                ),                
+                ),
               ],
             ),
           ),
           Positioned(
             top: 100,
             left: 20,
-            right: 20,            
+            right: 20,
             child: Container(
-              width: size.width * .8,
-              height: size.height * .8,
+              width: size.width * .7,
+              height: size.height * .7,
               padding: const EdgeInsets.all(20),
               child: Stack(
                 children: [
                   Positioned(
-                    top: 10,
+                    top: 20,
                     left: 0,
                     child: SizedBox(
-                      height: 550,
+                      height: 450,
                       child: Image.asset(plantList[widget.plantId].imageURL),
                     ),
                   ),
@@ -105,8 +105,9 @@ class _RecordScreenState extends State<RecordScreen> {
                           PlantFeatureIoT(
                             title: 'Temperatura',
                             image: 'assets/images/temperatura.png',
-                            plantFeature:
-                                plantList[widget.plantId].temperature.toString(),
+                            plantFeature: plantList[widget.plantId]
+                                .temperature
+                                .toString(),
                           ),
                           PlantFeatureIoT(
                             title: 'Iluminación',
@@ -123,11 +124,11 @@ class _RecordScreenState extends State<RecordScreen> {
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: -50,
             left: 0,
             right: 0,
             child: Container(
-              padding: const EdgeInsets.only(top: 70, left: 30, right: 30),
+              padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
               height: size.height * .3,
               width: size.width,
               decoration: BoxDecoration(
@@ -152,26 +153,26 @@ class _RecordScreenState extends State<RecordScreen> {
                             style: TextStyle(
                               color: Constants.primaryColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: 30.0,
+                              fontSize: 15.0,
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 10,
                           ),
                           Text(
                             plantList[widget.plantId].category,
                             style: const TextStyle(
                               color: Constants.blackColor,
-                              fontSize: 24.0,
+                              fontSize: 15.0,
                               fontWeight: FontWeight.bold,
                             ),
-                          )                                                   
+                          )
                         ],
-                      )                      
+                      )
                     ],
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 1.0,
                   ),
                   Expanded(
                     child: Text(
@@ -179,7 +180,7 @@ class _RecordScreenState extends State<RecordScreen> {
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         height: 1.5,
-                        fontSize: 18,
+                        fontSize: 15,
                         color: Constants.blackColor.withOpacity(.7),
                       ),
                     ),
@@ -218,7 +219,7 @@ class PlantFeature extends StatelessWidget {
           plantFeature,
           style: TextStyle(
             color: Constants.primaryColor,
-            fontSize: 18.0,
+            fontSize: 15.0,
             fontWeight: FontWeight.bold,
           ),
         )
@@ -243,22 +244,22 @@ class PlantFeatureIoT extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         SizedBox(
-          height: 70,
-          child:
-          Image.asset(image),
+        SizedBox(
+          height: 30,
+          child: Image.asset(image),
         ),
         Text(
           title,
           style: const TextStyle(
             color: Constants.blackColor,
+            fontSize: 13.0,
           ),
         ),
         Text(
           plantFeature,
           style: TextStyle(
             color: Constants.primaryColor,
-            fontSize: 18.0,
+            fontSize: 13.0,
             fontWeight: FontWeight.bold,
           ),
         )

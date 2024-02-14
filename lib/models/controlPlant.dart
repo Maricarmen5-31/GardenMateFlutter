@@ -12,19 +12,19 @@ class ControlPlant {
   final String hora;
   final String decription;
 
-  ControlPlant( 
+  ControlPlant(
       {required this.plantId,
-        required this.plantName,
-        required this.species,                
-        required this.size,
-        required this.category,
-        required this.humidity,
-        required this.temperature,
-        required this.lightning,        
-        required this.imageURL,
-        required this.fecha,
-        required this.hora,
-        required this.decription});
+      required this.plantName,
+      required this.species,
+      required this.size,
+      required this.category,
+      required this.humidity,
+      required this.temperature,
+      required this.lightning,
+      required this.imageURL,
+      required this.fecha,
+      required this.hora,
+      required this.decription});
 
   //List of Plants data
   static List<ControlPlant> plantList = [
@@ -39,9 +39,9 @@ class ControlPlant {
         lightning: 5,
         imageURL: 'assets/images/plant-one.png',
         fecha: '08/01/2024',
-        hora: '9:30am',
+        hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 1,
@@ -56,7 +56,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 2,
@@ -71,7 +71,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 3,
@@ -86,7 +86,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 4,
@@ -101,7 +101,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 5,
@@ -116,7 +116,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 6,
@@ -131,7 +131,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 7,
@@ -146,7 +146,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
     ControlPlant(
         plantId: 8,
@@ -161,8 +161,7 @@ class ControlPlant {
         fecha: '08/01/2024',
         hora: '',
         decription:
-        'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
+            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.'),
   ];
-
 }

@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:garden_mate/models/plants.dart';
+import 'package:garden_mate/providers/sensor_provider.dart';
 import 'package:garden_mate/screens/add_screen.dart';
 import 'package:garden_mate/screens/favorite_screen.dart';
 import 'package:garden_mate/screens/home_screen.dart';
@@ -8,6 +9,7 @@ import 'package:garden_mate/screens/plant_screen.dart';
 import 'package:garden_mate/screens/profile_screen.dart';
 import 'package:garden_mate/utils/constants.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -23,11 +25,13 @@ class _NavigationState extends State<Navigation> {
   int _bottomNavIndex = 0;
 
   //List of the pages
-  List<Widget> _widgetOptions(){
+  List<Widget> _widgetOptions() {
     return [
       const HomeScreen(),
       const PlantScreen(),
-      FavoriteScreen(favoritedPlants: favorites,),
+      FavoriteScreen(
+        favoritedPlants: favorites,
+      ),
       const ProfileScreen(),
     ];
   }
@@ -55,12 +59,19 @@ class _NavigationState extends State<Navigation> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(titleList[_bottomNavIndex], style: const TextStyle(
+            Text(
+              titleList[_bottomNavIndex],
+              style: const TextStyle(
+                color: Constants.blackColor,
+                fontWeight: FontWeight.w500,
+                fontSize: 24,
+              ),
+            ),
+            const Icon(
+              Icons.notifications,
               color: Constants.blackColor,
-              fontWeight: FontWeight.w500,
-              fontSize: 24,
-            ),),
-            const Icon(Icons.notifications, color: Constants.blackColor, size: 30.0,)
+              size: 30.0,
+            )
           ],
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -71,32 +82,41 @@ class _NavigationState extends State<Navigation> {
         children: _widgetOptions(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, PageTransition(child: const AddScreen(), type: PageTransitionType.bottomToTop));
+        onPressed: () async {
+
+          await Navigator.push(
+              context,
+              PageTransition(
+                  child: const AddScreen(),
+                  type: PageTransitionType.bottomToTop));
+          Provider.of<SensorProvider>(context, listen: false).getSensors();
         },
         backgroundColor: Constants.primaryColor,
-        child: Icon(Icons.add, color: Constants.whiteColor, size: 40.0,),
+        child: Icon(
+          Icons.add,
+          color: Constants.whiteColor,
+          size: 40.0,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        splashColor: Constants.primaryColor,
-        activeColor: Constants.primaryColor,
-        inactiveColor: Colors.black.withOpacity(.5),
-        icons: iconList,
-        activeIndex: _bottomNavIndex,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.softEdge,
-        onTap: (index){
-          setState(() {
-            _bottomNavIndex = index;
-            final List<Plant> favoritedPlants = Plant.getFavoritedPlants();
-            final List<Plant> addedToCartPlants = Plant.addedToCartPlants();
+          splashColor: Constants.primaryColor,
+          activeColor: Constants.primaryColor,
+          inactiveColor: Colors.black.withOpacity(.5),
+          icons: iconList,
+          activeIndex: _bottomNavIndex,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.softEdge,
+          onTap: (index) {
+            setState(() {
+              _bottomNavIndex = index;
+              final List<Plant> favoritedPlants = Plant.getFavoritedPlants();
+              final List<Plant> addedToCartPlants = Plant.addedToCartPlants();
 
-            favorites = favoritedPlants;
-            myCart = addedToCartPlants.toSet().toList();
-          });
-        }
-      ),
+              favorites = favoritedPlants;
+              myCart = addedToCartPlants.toSet().toList();
+            });
+          }),
     );
   }
 }

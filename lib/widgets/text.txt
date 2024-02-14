@@ -1,0 +1,64 @@
+import http.client
+import json
+from datetime import datetime
+
+def lambda_handler(event, context):
+    conn = http.client.HTTPSConnection('xs4mzq3hmbbd3gduzt6cbewfum.appsync-api.us-east-1.amazonaws.com')
+
+    query = """
+    query GetSensorCount {
+      listSensors {
+        items {
+          id
+        }
+      }
+    }
+    """
+    data = {
+        'query': query
+    }
+
+    headers = {
+        'Content-Type': 'application/json',
+        'x-api-key': 'da2-mvoshhzphnb5fedrlhaiaqnlhy'
+    }
+
+    conn.request('POST', '/graphql', body=json.dumps(data), headers=headers)
+
+    response = conn.getresponse()
+    response_data = json.loads(response.read().decode())
+
+    sensor_count_before = len(response_data['data']['listSensors']['items'])
+
+    mutation = """
+    mutation AddSensorData($input: CreateSensorInput!) {
+      createSensor(input: $input) {
+        id
+        temperature
+        humidity
+      }
+    }
+    """
+    variables = {
+        'input': {
+            'temperature': event['temperature'],
+            'humidity': event['humidity']
+        }
+    }
+    data = {
+        'query': mutation,
+        'variables': variables
+    }
+
+    conn.request('POST', '/graphql', body=json.dumps(data), headers=headers)
+
+    response = conn.getresponse()
+    mutation_response = {
+        'statusCode': response.status,
+        'body': response.read().decode()
+    }
+
+    return {
+        'sensorCountBefore': sensor_count_before,
+        'mutationResponse': mutation_response,
+    }
